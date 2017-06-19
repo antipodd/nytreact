@@ -12,8 +12,8 @@ import React from "react"
 //destructure react-router
 //import {Link} from "react-router"; not needed here
 
-class Main extends React.Component({
-	render: function() {
+class Main extends React.Component{
+	render() {
 		return (
 			<div className="main-container">
 				<div className="jumbotron">
@@ -24,8 +24,8 @@ class Main extends React.Component({
 					{this.props.children}
 				</div>
 			</div>
-		)
+		);
 	}
-});
+}
 
 export default Main;
