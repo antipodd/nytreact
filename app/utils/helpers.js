@@ -19,16 +19,16 @@ const APIKey = "0bd5619e987544849bf1e49996358114";
 // Arrow functions are best suited for non-method functions so function is used here instead of fat arrow
 const helpers = {
 	searchQuery: function(query, startDate, endDate) {
-		let query = query.trim();
-		let startDate = `${startDate.trim()}0101`;
-		let endDate = `${endDate.trim()}1231`;
+		let queries = query.trim();
+		let start = `${startDate.trim()}0101`;
+		let end = `${endDate.trim()}1231`;
 
 		return axios.get("https://api.nytimes.com/svc/search/v2/articlesearch.json", {
 			params: {
 				"api-key": APIKey,
-				"q": query,
-				"begin_date": startDate,
-				"end_date": endDate
+				"q": queries,
+				"begin_date": start,
+				"end_date": end
 			}
 
 		})

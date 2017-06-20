@@ -15,7 +15,7 @@ class Search extends React.Component {
 	constructor(props) {
 		super(props); // Component has its own constructor function
 
-		this.state = { term: '', startDate: '', endDate: '' };
+		this.state = { term: '', startDate: '', endDate: '', results: {} };
 		this.onChange = this.onChange.bind(this);
   		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -39,21 +39,21 @@ class Search extends React.Component {
 		return (
 			<form>
 				<div className="form-group">
-				<label for="search term">Search Terms</label>
+				<label htmlFor="search term">Search Terms</label>
 					<input 
 						value={this.state.term} // input is now a controlled component, value set by state
 						name="term"
 						onChange={this.onChange} />
 				</div>
 				<div className="form-group">
-					<label for="start">Start Year (optional)</label>
+					<label htmlFor="start">Start Year (optional)</label>
 					<input 
 						value={this.state.startDate} // input is now a controlled component, value set by state
 						name="startDate"
 						onChange={this.onChange} />
 				</div>
 				<div className="form-group">
-					<label for="start">End Year (optional)</label>
+					<label htmlFor="start">End Year (optional)</label>
 					<input 
 						value={this.state.endDate} // input is now a controlled component, value set by state
 						name="endDate"
