@@ -21,9 +21,10 @@ class Main extends React.Component{
 					<h1 className="text-center"> New York Times Article Scrubber </h1>
 					<p className="lead text-center"> Search for and annotate articles of interest! </p> 
 				</div>
-				<div className="container">
-					{this.props.children}
-				</div>
+				
+				<Search />
+				<Saved />
+
 			</div>
 		);
 	}

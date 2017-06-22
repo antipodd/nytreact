@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
-
+const Article = require("./models/Article");
 /*// =============================================================
 // *** Import Models
 // =============================================================
@@ -61,10 +61,38 @@ app.use(express.static(process.cwd() + "/public"));
 // =============================================================
 // *** Import and use Routes
 // =============================================================
-//var articlesRoutes = require("./controllers/articles_controller.js");
-//var commentsRoutes = require("./controllers/comments_controller.js");
-//app.use("/", articlesRoutes);
-//app.use("/", commentsRoutes);
+
+// Get all the saved articles
+app.get("/api", function(req, res) {
+
+	Article.find({}).exec(function(err, doc) {
+
+	    if (err) {
+	      console.log(err);
+	    }
+	    else {
+	      res.send(doc);
+	    }
+  	});
+});
+
+// Post the selected article to MongoDB
+app.post("/api", function(req, res) {
+
+	const savedArticle = new Article(req.body);
+	console.log(req.body);
+
+    savedArticle.save((err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data)
+        }
+    });
+});
+  
+  
+  
 
 // =============================================================
 // *** Express port listener

@@ -36,14 +36,6 @@ import Search from "../components/search";
 
 export default (
 	<Router history={hashHistory}>
-    	<Route path="/" component={Main}>   
-		    <Route path="Search" component={Search} /> 
-		   	<Route path="Saved" component={Saved} />  
-		   		
-
-		    {/* If user selects any other path... we get the Search Route */}
-		    <IndexRoute component={Search} />
-
-    	</Route>
+    	<Route path="/" component={Main} />
   	</Router>
 );

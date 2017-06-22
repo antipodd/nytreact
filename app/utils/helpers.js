@@ -16,9 +16,9 @@ const APIKey = "0bd5619e987544849bf1e49996358114";
 // *** Helper functions 
 // =============================================================
 
-// Arrow functions are best suited for non-method functions so function is used here instead of fat arrow
+// Arrow functions are best suited for non-method functions 
 const helpers = {
-	searchQuery: function(query, startDate, endDate) {
+	searchQuery (query, startDate, endDate) {
 		let queries = query.trim();
 		let start = `${startDate.trim()}0101`;
 		let end = `${endDate.trim()}1231`;
@@ -31,6 +31,14 @@ const helpers = {
 				"end_date": end
 			}
 
+		})
+	},
+
+	saveArticle (article) {
+		return axios.post("/api", {
+			"title": article.headline.main,
+            "date": article.pub_date,
+            "url": article.web_url
 		})
 	}
 }
