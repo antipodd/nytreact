@@ -51,8 +51,10 @@ const port = process.env.PORT || 3000;
 // *** Set BodyParser and Morgan
 // =============================================================
 app.use(logger("dev"));
-app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // =============================================================
 // *** Serve static content for the app from the "public" directory in the application directory.
 // =============================================================

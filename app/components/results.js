@@ -17,8 +17,9 @@ class Results extends React.Component {
 		this.saveArticle = this.saveArticle.bind(this);
 	}
 
-	saveArticle(article) {
-		helpers.saveArticle(article)
+	saveArticle(e) {
+		console.log(e.target.dataset.title, e.target.dataset.web_url, e.target.dataset.pub_date)
+		helpers.saveArticle({title: e.target.dataset.title, date:e.target.dataset.pub_date, url: e.target.dataset.web_url})
 			.then((result) => {
 				console.log("saved")
 			})
@@ -32,6 +33,9 @@ class Results extends React.Component {
 			  						<p>Date Published: {new Date(article.pub_date).toString()}</p>
 			  						<button
                             			className = "btn btn-info"
+                            			data-title = {article.headline.main}
+                            			data-web_url = {article.web_url}
+                            			data-pub_date = {article.pub_date}
 			                            onClick = {this.saveArticle}>
 			                            Save Article
 		                        	</button>

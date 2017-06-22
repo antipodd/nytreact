@@ -35,11 +35,9 @@ const helpers = {
 	},
 
 	saveArticle (article) {
-		return axios.post("/api", {
-			"title": article.headline.main,
-            "date": article.pub_date,
-            "url": article.web_url
-		})
+		//console.log(article)
+		console.log(article.title, article.date, article.url)
+		return axios.post("/api", article)
 	}
 }
 
