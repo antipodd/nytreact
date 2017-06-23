@@ -43,7 +43,7 @@ class Search extends React.Component {
 	}
 
 	handleReset() {
-		this.setState({results: {}});
+		this.setState({results: null});
 	}
 
 	render() {

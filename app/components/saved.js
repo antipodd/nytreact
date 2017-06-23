@@ -13,7 +13,6 @@ import helpers from "../utils/helpers.js";
 class Saved extends React.Component{
 	constructor(props) {
 		super(props); // Component has its own constructor function
-
 		this.state = { savedArticles: null };
 		this.componentDidMount = this.componentDidMount.bind(this);
 		this.displaySavedArticles = this.displaySavedArticles.bind(this);
@@ -22,16 +21,20 @@ class Saved extends React.Component{
 	componentDidMount() {
     	console.log("COMPONENT MOUNTED");
 
-	    // The moment the page renders on page load, we will retrieve the previous click count.
-	    // We will then utilize that click count to change the value of the click state.
+	    // As the page loads, grab the articles that already exist in the database
 	    helpers.getArticles()
 	      	.then((response) => {    
-		        
 		        this.setState({
 		          	savedArticles: response
 		        });
+		        if (this.state.savedArticles.data.length === 0) {
+		        	this.setState({
+		        		savedArticles: null
+		        	})
+		        	
+		        }
 		        console.log("RESULTS", response);
-		        
+		        console.log("state", this.state.savedArticles);     
 	    	})
 	}
 
@@ -59,7 +62,14 @@ class Saved extends React.Component{
   		console.log(e.target.dataset.id)
   		helpers.deleteArticle({id: e.target.dataset.id})
 			.then((result) => {
-				console.log("deleted")
+				console.log("deleted");
+				helpers.getArticles()
+	      			.then((response) => {    
+		        		this.setState({
+		          			savedArticles: response
+		        		});
+		            
+	    			})
 			})
   	}
 
@@ -72,7 +82,7 @@ class Saved extends React.Component{
 	                        <h3 className="panel-title">Saved Articles</h3>
 	                    </div>
 						{this.state.savedArticles ? 
-								this.displaySavedArticles() : <div>No articles have been saved</div>
+								this.displaySavedArticles() : <div className="panel-body">No articles have been saved</div>
 					  	}
 					  	
 					</div>

@@ -13,6 +13,8 @@ import helpers from "../utils/helpers"
 class Results extends React.Component {
 	constructor(props) {
 		super(props); // Component has its own constructor function
+		this.state = {search: null};
+		this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this)
 		this.handleSearch = this.handleSearch.bind(this);
 		this.saveArticle = this.saveArticle.bind(this);
 	}
@@ -23,6 +25,12 @@ class Results extends React.Component {
 			.then((result) => {
 				console.log("saved")
 			})
+	}
+
+	componentWillReceiveProps(nextProps) {
+		console.log(nextProps);
+		this.setState({search: nextProps})
+		console.log(this.state.search)
 	}
 
 	handleSearch () {
@@ -43,6 +51,8 @@ class Results extends React.Component {
 			  				)
 				  })
 	}
+
+	
 
 	render() {
 		return (
