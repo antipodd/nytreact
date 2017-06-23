@@ -46,7 +46,8 @@ class Saved extends React.Component{
                             			data-id = {article._id}
                             			data-title = {article.title}
                             			data-web_url = {article.url}
-                            			data-pub_date = {article.date}>
+                            			data-pub_date = {article.date}
+                            			onClick = {this.deleteArticle}>
 			                            Delete Article
 		                        	</button>
 			  					</div>
@@ -54,8 +55,12 @@ class Saved extends React.Component{
 				  })
 	}
   
-  	deleteArticle() {
-
+  	deleteArticle(e) {
+  		console.log(e.target.dataset.id)
+  		helpers.deleteArticle({id: e.target.dataset.id})
+			.then((result) => {
+				console.log("deleted")
+			})
   	}
 
 	render() {

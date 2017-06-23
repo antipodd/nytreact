@@ -40,8 +40,13 @@ const helpers = {
 		return axios.post("/api", article)
 	},
 
-	getArticles() {
+	getArticles () {
 		return axios.get("/api");
+	},
+
+	deleteArticle (article) {
+		console.log(article.id)
+		return axios.post(`/delete/${article.id}`)
 	}
 }
 

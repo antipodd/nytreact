@@ -44,7 +44,6 @@ class Search extends React.Component {
 
 	handleReset() {
 		this.setState({results: {}});
-		this.forceUpdate()
 	}
 
 	render() {

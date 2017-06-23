@@ -92,6 +92,14 @@ app.post("/api", function(req, res) {
         }
     });
 });
+
+// Delete the selected article
+app.post("/delete/:id", function(req, res) {
+  console.log(req.params);
+  Article.remove({"_id": req.params.id}, function(err, doc) {
+      console.log("deleted");
+  });
+});
   
   
   
