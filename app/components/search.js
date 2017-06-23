@@ -100,7 +100,7 @@ class Search extends React.Component {
 
 			  	<div className="row">
 			  		<div className="col-md-12">
-			  			{this.state.results ? <Results search={this.state.results} /> : <div></div>}
+			  			{this.state.results ? <Results search={this.state.results} saved={this.props.saved} /> : <div></div>}
 			  		</div>
 			  	</div>
 			</div>

@@ -13,8 +13,6 @@ import helpers from "../utils/helpers"
 class Results extends React.Component {
 	constructor(props) {
 		super(props); // Component has its own constructor function
-		this.state = {search: null};
-		
 		this.handleSearch = this.handleSearch.bind(this);
 		this.saveArticle = this.saveArticle.bind(this);
 	}
@@ -23,11 +21,12 @@ class Results extends React.Component {
 		console.log(e.target.dataset.title, e.target.dataset.web_url, e.target.dataset.pub_date)
 		helpers.saveArticle({title: e.target.dataset.title, date:e.target.dataset.pub_date, url: e.target.dataset.web_url})
 			.then((result) => {
-				console.log("saved")
+				helpers.getArticles()
+	      			.then((response) => {
+		        		this.props.saved = response;		            
+	    			})
 			})
 	}
-
-	
 
 	handleSearch () {
 		return this.props.search.data.response.docs.slice(0,5).map((article, number) => {

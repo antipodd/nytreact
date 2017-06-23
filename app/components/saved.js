@@ -17,6 +17,7 @@ class Saved extends React.Component{
 		this.componentDidMount = this.componentDidMount.bind(this);
 		this.displaySavedArticles = this.displaySavedArticles.bind(this);
 		this.deleteArticle = this.deleteArticle.bind(this);
+		this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
 	}
 
 	componentDidMount() {
@@ -78,6 +79,14 @@ class Saved extends React.Component{
 		            
 	    			})
 			})
+  	}
+
+  	componentWillReceiveProps(prevState) {
+  		if (this.props.saved) {
+  			if(prevState.savedArticles !== this.props.saved) {
+  				this.setState({savedArticles: this.props.saved})
+  			}
+  		}
   	}
 
 	render() {
