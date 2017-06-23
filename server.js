@@ -97,7 +97,12 @@ app.post("/api", function(req, res) {
 app.post("/delete/:id", function(req, res) {
   console.log(req.params);
   Article.remove({"_id": req.params.id}, function(err, doc) {
-      console.log("deleted");
+        if (err) {
+            console.log(err);
+        } else {
+          console.log("deleted");
+          res.json(doc)
+        }
   });
 });
   

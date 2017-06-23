@@ -16,6 +16,7 @@ class Saved extends React.Component{
 		this.state = { savedArticles: null };
 		this.componentDidMount = this.componentDidMount.bind(this);
 		this.displaySavedArticles = this.displaySavedArticles.bind(this);
+		this.deleteArticle = this.deleteArticle.bind(this);
 	}
 
 	componentDidMount() {
@@ -63,11 +64,17 @@ class Saved extends React.Component{
   		helpers.deleteArticle({id: e.target.dataset.id})
 			.then((result) => {
 				console.log("deleted");
+				console.log(result);
+				// this should work but I get response of null?
 				helpers.getArticles()
-	      			.then((response) => {    
+	      			.then((response) => {
+	      				console.log("retrieving articles")
+	      				console.log(response)
+	      				const savedArticles = response;    
 		        		this.setState({
-		          			savedArticles: response
+		          			savedArticles: savedArticles
 		        		});
+		        		console.log(this.state.savedArticles);
 		            
 	    			})
 			})
