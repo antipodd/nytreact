@@ -38,6 +38,10 @@ const helpers = {
 		//console.log(article)
 		console.log(article.title, article.date, article.url)
 		return axios.post("/api", article)
+	},
+
+	getArticles() {
+		return axios.get("/api");
 	}
 }
 

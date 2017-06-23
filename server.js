@@ -82,7 +82,7 @@ app.get("/api", function(req, res) {
 app.post("/api", function(req, res) {
 
 	const savedArticle = new Article(req.body);
-	console.log(req.body);
+	//console.log(req.body);
 
     savedArticle.save((err, data) => {
         if (err) {
