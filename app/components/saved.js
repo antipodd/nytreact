@@ -17,7 +17,7 @@ class Saved extends React.Component{
 		this.componentDidMount = this.componentDidMount.bind(this);
 		this.displaySavedArticles = this.displaySavedArticles.bind(this);
 		this.deleteArticle = this.deleteArticle.bind(this);
-		this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+		/*this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);*/
 	}
 
 	componentDidMount() {
@@ -41,7 +41,7 @@ class Saved extends React.Component{
 	}
 
 	displaySavedArticles() {
-		return this.state.savedArticles.data.map((article, number) => {
+		return this.props.savedArticles.data.map((article, number) => {
 			  				return (
 			  					<div className="panel-body" key={number}>
 			  						<h3><a href={article.url}>{article.title}</a></h3>
@@ -72,22 +72,20 @@ class Saved extends React.Component{
 	      				console.log("retrieving articles")
 	      				console.log(response)
 	      				const savedArticles = response;    
-		        		this.setState({
-		          			savedArticles: savedArticles
-		        		});
-		        		console.log(this.state.savedArticles);
+		        		this.props.saved(response)
+		        		
 		            
 	    			})
 			})
   	}
 
-  	componentWillReceiveProps(prevState) {
+  	/*componentWillReceiveProps(prevState) {
   		if (this.props.saved) {
   			if(prevState.savedArticles !== this.props.saved) {
   				this.setState({savedArticles: this.props.saved})
   			}
   		}
-  	}
+  	}*/
 
 	render() {
 		return (

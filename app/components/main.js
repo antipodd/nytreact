@@ -18,10 +18,11 @@ class Main extends React.Component{
 		super(props); // Component has its own constructor function
 
 		this.state = { savedArticles: null };
-		this.savedArticles = this.savedArticles.bind(this);
+		this.saved = this.saved.bind(this);
 	}
 
-	savedArticles (articles) {
+	saved (articles) {
+		console.log('savedArticles called', articles)
     	this.setState({ savedArticles: articles });
   	}
 
@@ -33,8 +34,8 @@ class Main extends React.Component{
 					<p className="lead text-center"> Search for and annotate articles of interest! </p> 
 				</div>
 				
-				<Search saved={this.savedArticles} />
-				<Saved saved={this.savedArticles}/>
+				<Search saved={this.saved} />
+				<Saved saved={this.saved} savedArticles={this.state.savedArticles}/>
 
 			</div>
 		);

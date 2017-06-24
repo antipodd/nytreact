@@ -23,7 +23,8 @@ class Results extends React.Component {
 			.then((result) => {
 				helpers.getArticles()
 	      			.then((response) => {
-		        		this.props.saved = response;		            
+	      				console.log("this happened");
+		        		this.props.saved(response);		            
 	    			})
 			})
 	}
