@@ -10,15 +10,50 @@ import React from "react"
 import Search from "./search"
 import Saved from "./saved"
 
+import helpers from "../utils/helpers.js";
+
 //destructure react-router
 //import {Link} from "react-router"; not needed here
 
 class Main extends React.Component{
 	constructor(props) {
 		super(props); // Component has its own constructor function
-
-		this.state = { savedArticles: null };
+		/*helpers.getArticles()
+	      	.then((response) => {    
+		        this.state = { savedArticles: response }
+		        });
+		        if (this.state.savedArticles.data.length === 0) {
+		        	this.setState({
+		        		savedArticles: null
+		        	})
+		        	
+		        }
+		        console.log("RESULTS", response);
+		        console.log("state", this.state.savedArticles);     
+	    	})*/
+		this.state = { savedArticles: [] };
 		this.saved = this.saved.bind(this);
+
+	}
+
+	componentWillMount() {
+    	console.log("COMPONENT MOUNTED");
+
+	    // As the page loads, grab the articles that already exist in the database
+	    helpers.getArticles()
+	      	.then((response) => {    
+		        this.setState({
+		          	savedArticles: response.data
+		        });
+		        // if (this.state.savedArticles.data.length === 0) {
+		        // 	this.setState({
+		        // 		savedArticles: null
+		        // 	})
+		        	
+		        // }
+		        console.log("RESULTS", response);
+		        console.log("state", this.state.savedArticles);     
+	    	})
 	}
 
 	saved (articles) {

@@ -24,7 +24,7 @@ class Results extends React.Component {
 				helpers.getArticles()
 	      			.then((response) => {
 	      				console.log("this happened");
-		        		this.props.saved(response);		            
+		        		this.props.saved(response.data);		            
 	    			})
 			})
 	}

@@ -14,34 +14,39 @@ class Saved extends React.Component{
 	constructor(props) {
 		super(props); // Component has its own constructor function
 		this.state = { savedArticles: null };
-		this.componentDidMount = this.componentDidMount.bind(this);
+		// this.componentDidMount = this.componentDidMount.bind(this);
 		this.displaySavedArticles = this.displaySavedArticles.bind(this);
 		this.deleteArticle = this.deleteArticle.bind(this);
 		/*this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);*/
 	}
 
+	/*componentDidMount() {
+		this.displaySavedArticles()
+	}*/
 	componentDidMount() {
     	console.log("COMPONENT MOUNTED");
 
 	    // As the page loads, grab the articles that already exist in the database
-	    helpers.getArticles()
-	      	.then((response) => {    
-		        this.setState({
-		          	savedArticles: response
-		        });
-		        if (this.state.savedArticles.data.length === 0) {
-		        	this.setState({
-		        		savedArticles: null
-		        	})
+	    // helpers.getArticles()
+	    //   	.then((response) => {    
+		   //      this.setState({
+		   //        	savedArticles: response
+		   //      });
+		   //      this.props.saved(response);
+		   //      if (this.state.savedArticles.data.length === 0) {
+		   //      	this.setState({
+		   //      		savedArticles: null
+		   //      	})
 		        	
-		        }
-		        console.log("RESULTS", response);
-		        console.log("state", this.state.savedArticles);     
-	    	})
+		        	
+		   //      }
+		   //      console.log("RESULTS", response);
+		   //      console.log("state", this.state.savedArticles);     
+	    // 	})
 	}
 
 	displaySavedArticles() {
-		return this.props.savedArticles.data.map((article, number) => {
+		return this.props.savedArticles.map((article, number) => {
 			  				return (
 			  					<div className="panel-body" key={number}>
 			  						<h3><a href={article.url}>{article.title}</a></h3>
@@ -71,8 +76,9 @@ class Saved extends React.Component{
 	      			.then((response) => {
 	      				console.log("retrieving articles")
 	      				console.log(response)
-	      				const savedArticles = response;    
-		        		this.props.saved(response)
+	      				//const savedArticles = response;    
+		        		this.props.saved(response.data)
+		        		/*this.setState({savedArticles: response})*/
 		        		
 		            
 	    			})
@@ -95,7 +101,7 @@ class Saved extends React.Component{
 	                    <div className="panel-heading">
 	                        <h3 className="panel-title">Saved Articles</h3>
 	                    </div>
-						{this.state.savedArticles ? 
+						{this.props.savedArticles.length ? 
 								this.displaySavedArticles() : <div className="panel-body">No articles have been saved</div>
 					  	}
 					  	
